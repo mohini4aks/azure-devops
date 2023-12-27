@@ -1,12 +1,14 @@
 # File: .github/workflows/workflow.yml
-
-on: 
-  workflow_dispatch: 
-
-name: Run Azure Login With a Service Principal Secret
-
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        type: choice
+        options:
+          - create
+          - delete
+name: Create AKS Cluster
 jobs:
-
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
@@ -23,10 +25,12 @@ jobs:
           az account show
     - name: Create AKS Cluster
       uses: azure/arm-deploy@v1
+      if: inputs.operation == 'create'
       with:
         resourceGroupName: dev-mohini-poc
         template: ./bicep/templates/aks-dev-template.bicep
         parameters: ./bicep/parameters/aks-dev-parameters.json
     - name: Delete AKS Cluster
+      if: inputs.operation == 'create'
       run: |
         az aks delete --name mohini-poc --resource-group dev-mohini-poc --yes --no-wait
