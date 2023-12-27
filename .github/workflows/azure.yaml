@@ -25,12 +25,12 @@ jobs:
           az account show
     - name: Create AKS Cluster
       uses: azure/arm-deploy@v1
-      if: inputs.operation == 'create'
+      if: github.event.inputs.operation == 'create'
       with:
         resourceGroupName: dev-mohini-poc
         template: ./bicep/templates/aks-dev-template.bicep
         parameters: ./bicep/parameters/aks-dev-parameters.json
     - name: Delete AKS Cluster
-      if: inputs.operation == 'create'
+      if: github.event.inputs.operation == 'delete'
       run: |
         az aks delete --name mohini-poc --resource-group dev-mohini-poc --yes --no-wait
