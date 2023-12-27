@@ -24,5 +24,6 @@ jobs:
     - name: Create AKS Cluster
       uses: azure/arm-deploy@v1
       with:
+        resourceGroupName: mohini-poc
         template: ./bicep/templates/aks-dev-template.bicep
         parameters: ./bicep/parameters/aks-dev-parameters.json
