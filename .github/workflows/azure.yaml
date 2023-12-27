@@ -27,3 +27,6 @@ jobs:
         resourceGroupName: dev-mohini-poc
         template: ./bicep/templates/aks-dev-template.bicep
         parameters: ./bicep/parameters/aks-dev-parameters.json
+    - name: Delete AKS Cluster
+      run: |
+        az aks delete --name mohini-poc --resource-group dev-mohini-poc --yes --no-wait
