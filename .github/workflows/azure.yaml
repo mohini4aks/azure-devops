@@ -21,3 +21,8 @@ jobs:
         azcliversion: latest
         inlineScript: |
           az account show
+    - name: Create AKS Cluster
+      uses: azure/arm-deploy@v1
+      with:
+        template: ./bicep/templates/aks-dev-template.bicep
+        parameters: ./bicep/parameters/aks-dev-parameters.json
