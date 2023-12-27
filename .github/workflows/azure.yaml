@@ -7,7 +7,7 @@ on:
         options:
           - create
           - delete
-name: Create AKS Cluster
+name: AKS Cluster Operations
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
