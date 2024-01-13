@@ -5,8 +5,9 @@ on:
       operation:
         type: choice
         options:
-          - create
-          - delete
+          - create_aks
+          - delete_aks
+          - create_storage_account
 name: AKS Cluster Operations
 jobs:
   build-and-deploy:
@@ -25,11 +26,17 @@ jobs:
           az account show
     - name: Create AKS Cluster
       uses: azure/arm-deploy@v1
-      if: github.event.inputs.operation == 'create'
+      if: github.event.inputs.operation == 'create_aks'
       with:
         resourceGroupName: dev-mohini-poc
         template: ./bicep/templates/aks-dev-template.bicep
         parameters: ./bicep/parameters/aks-dev-parameters.json
+    - name: Create Storage Account
+      uses: azure/arm-deploy@v1
+      if: github.event.inputs.operation == 'create_storage_account'
+      with:
+        resourceGroupName: dev-mohini-poc
+        template: ./bicep/templates/storage-account.bicep
     - name: Delete AKS Cluster
       if: github.event.inputs.operation == 'delete'
       run: |
