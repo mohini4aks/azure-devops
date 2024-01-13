@@ -16,5 +16,4 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
 
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
   name: containerName
-  parent: storageaccount
 }
