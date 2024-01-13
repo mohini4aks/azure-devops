@@ -8,12 +8,13 @@ resource storageaccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   sku: {
     name: 'Standard_ZRS'
   }
-  
+
   properties: {
     accessTier: 'Cool'
   }
 }
 
-resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-05-01' = {
+resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
+  parent: storageaccount
   name: '${storageaccount.name}/default/${containerName}'
 }
