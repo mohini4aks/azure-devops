@@ -37,6 +37,7 @@ jobs:
       with:
         resourceGroupName: dev-mohini-poc
         template: ./bicep/templates/storage-account.bicep
+        parameters: ./bicep/parameters/aks-dev-parameters.json
     - name: Delete AKS Cluster
       if: github.event.inputs.operation == 'delete'
       run: |

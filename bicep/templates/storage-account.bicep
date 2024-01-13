@@ -1,6 +1,7 @@
+param location string = 'Central US'
 resource storageaccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: 'storageaccount'
-  location: 'Central US'
+  location: location
   kind: 'StorageV2'
   sku: {
     name: 'Standard_ZRS'
