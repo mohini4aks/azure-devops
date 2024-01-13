@@ -22,6 +22,9 @@
     },
     "location": {
       "value": "centralus"
+    },
+    "storageAccountName" :{
+      "value": "mohini-poc"
     }
   }
 }
